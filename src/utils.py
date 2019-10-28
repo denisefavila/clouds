@@ -2,7 +2,7 @@ import numpy as np
 from skimage.measure import label, regionprops
 import cv2
 from PIL import Image
-from const import COLOR_MAP
+from src.const import COLOR_MAP
 
 
 def split_image_label_column(df):
