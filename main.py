@@ -1,9 +1,9 @@
-from const import TRAIN_CSV
+from src.const import TRAIN_CSV
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from utils import split_image_label_column, get_image_with_bboxes
-from dataset import Cloud
+from src.utils import split_image_label_column, get_image_with_bboxes
+from src.dataset import Cloud
 
 
 def main():
