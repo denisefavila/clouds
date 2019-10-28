@@ -10,6 +10,7 @@ from utils import get_mask_from_rle, get_bounding_boxes_from_mask
 
 class Cloud(Dataset):
     def __init__(self, df, datatype='train', img_ids=None, transform=None):
+        self.df = df
         if datatype == 'train':
             self.data_folder = TRAIN_PATH
         else:
