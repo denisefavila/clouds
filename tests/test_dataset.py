@@ -14,9 +14,11 @@ def data_params():
                                            "image_id": ["0a1b596.jpg", "0a5d418.jpg"],
                                            "EncodedPixels": ["264918 937 266318 937 267718 937",
                                                              "264928 931 262318 947 267118 917"]},
+        
         'train_csv_without_cloud_formation': {"label": ["Fish", "Flower"],
                                               "image_id": ["0a1b596.jpg", "0a5d418.jpg"],
                                               "EncodedPixels": [np.nan, np.nan]},
+        
         'test_csv_with_cloud_formation': {"label": ["Fish", "Flower"],
                                           "image_id": ["0a0f81b.jpg", "0a2c1c4.jpg"],
                                           "EncodedPixels": ["264918 937 266318 937 267718 937",
