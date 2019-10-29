@@ -8,6 +8,10 @@ The labels were created in a crowd-sourcing activity at the Max-Planck-Institite
 
 The segment for each cloud formation label for an image is encoded into a single row, even if there are several non-contiguous areas of the same formation in an image. If there is no area of a certain cloud type for an image, the corresponding EncodedPixels prediction should be left blank.
 
+<img src="data/examples/fish.jpeg" width="45%"></img>
+<img src="data/examples/flower.jpeg" width="45%"></img>
+<img src="data/examples/gravel.jpeg" width="45%"></img>
+<img src="data/examples/sugar.jpeg" width="45%"></img>
 
 Informations and data can be found at the Kaggle competition page: 
 https://www.kaggle.com/c/understanding_cloud_organization/overview
