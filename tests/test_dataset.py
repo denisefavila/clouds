@@ -32,7 +32,7 @@ def data_params():
     'test_csv_with_cloud_formation'
 ])
 def data(data_params, request):
-    """Create a Sushi instance based on recipes."""
+    """Create dataframe."""
     name = request.param
     return pd.DataFrame.from_dict(data_params[name])
 
