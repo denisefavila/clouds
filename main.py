@@ -1,4 +1,4 @@
-from src.const import TRAIN_CSV
+from const import TRAIN_CSV
 import pandas as pd
 import matplotlib.pyplot as plt
 

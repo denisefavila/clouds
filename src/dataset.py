@@ -4,7 +4,7 @@ from PIL import Image
 from torch.utils.data import Dataset
 import numpy as np
 
-from src.const import TRAIN_PATH, TEST_PATH
+from const import TRAIN_PATH, TEST_PATH
 from src.utils import get_mask_from_rle, get_bounding_boxes_from_mask
 
 
