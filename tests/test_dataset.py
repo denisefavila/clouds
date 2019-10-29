@@ -52,5 +52,3 @@ def test_get_example(data, bbox_qty, data_type):
 
     assert len(get_one_example['label'][1]) == bbox_qty
 
-
-def test_get_len(data):
