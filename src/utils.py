@@ -2,7 +2,9 @@ import numpy as np
 from skimage.measure import label, regionprops
 import cv2
 from PIL import Image
-from const import COLOR_MAP
+from const import COLOR_MAP, CLASSES
+from collections import OrderedDict
+import pandas as pd
 
 
 def split_image_label_column(df):
@@ -15,13 +17,21 @@ def split_image_label_column(df):
     df["image_id"] = df["Image_Label"].apply(lambda x: x.split("_")[0])
 
     df = df.drop(columns=["Image_Label"])
+
+    df = df.groupby(['image_id']).apply(
+        lambda x: OrderedDict(zip(x['label'], x['EncodedPixels']))).reset_index(name='encoded')
+
+    for class_name in CLASSES:
+        df[class_name] = df['encoded'].map(lambda x: 0 if pd.isnull(
+            x.get(class_name, np.nan)) else 1)
+
     return df
 
 
 def get_mask_from_rle(mask_rle, width, height):
     """
     Get mask from the run-length encoding on the pixel values.
-    :param mask_rle: string
+    :param mask_rle: list
     :param width: int
     :param height: int
     :return: np.array
@@ -50,7 +60,7 @@ def get_bounding_boxes_from_mask(mask):
     return bbox
 
 
-def get_image_with_bboxes(image, label):
+def get_image_with_bboxes(image, boxes, labels):
     """
     Get image with bounding boxes
     :param image: PIL image
@@ -59,21 +69,21 @@ def get_image_with_bboxes(image, label):
     """
     opencv_image = np.array(image)
 
-    label_name = label[0]
-    bboxes = label[1]
-    for bbox in bboxes:
-        start_point = (bbox[1], bbox[0])
-        end_point = (bbox[3], bbox[2])
+    for i, bboxes_class in enumerate(boxes):
+        label_name = CLASSES[i]
+        for bbox in bboxes_class:
+            start_point = (bbox[1], bbox[0])
+            end_point = (bbox[3], bbox[2])
 
-        text_point = (bbox[1] + 50, bbox[0] + 50)
+            text_point = (bbox[1] + 50, bbox[0] + 50)
 
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        color = COLOR_MAP.get(label_name)
-        opencv_image = cv2.rectangle(opencv_image, start_point, end_point,
-                                     color, 8)
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            color = COLOR_MAP.get(label_name)
+            opencv_image = cv2.rectangle(opencv_image, start_point, end_point,
+                                         color, 8)
 
-        opencv_image = cv2.putText(opencv_image, label_name, text_point,
-                                   font, 1.5, color, 3, lineType=cv2.LINE_AA)
+            opencv_image = cv2.putText(opencv_image, label_name, text_point,
+                                       font, 1.5, color, 3, lineType=cv2.LINE_AA)
 
     image = Image.fromarray(opencv_image, 'RGB')
 
