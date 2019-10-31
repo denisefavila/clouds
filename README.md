@@ -13,6 +13,9 @@ The segment for each cloud formation label for an image is encoded into a single
 <img src="data/examples/gravel.jpeg" width="45%"></img>
 <img src="data/examples/sugar.jpeg" width="45%"></img>
 
+
+<img src="data/examples/myplot.png" width="100%"></img>
+
 Informations and data can be found at the Kaggle competition page: 
 https://www.kaggle.com/c/understanding_cloud_organization/overview
 
