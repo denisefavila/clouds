@@ -12,7 +12,6 @@ def main():
 
     train_df = split_image_label_column(pd.read_csv(TRAIN_CSV))
     print('There are {} images in the train set.'.format(len(train_df)))
-    import pdb; pdb.set_trace()
     train_dataset = Cloud(df=train_df, datatype='train')
 
     # Plot figure with bounding box
